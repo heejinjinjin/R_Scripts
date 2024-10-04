@@ -90,18 +90,19 @@ while(TRUE){
 
 arrow = image_read("D:/한지윤/RScripts/arrow.png") # 화살 이미지
 arrow = image_scale(arrow, "100x25!")
-arrow = image_rotate(image_background(arrow, "none"), -11)
+arrow_centered = image_background(arrow, "none") # 배경 없애기
 
 # 화살 위치 초기화
 x = 0
 y = 220
+angle = -11 # 초기 각도 설정
 
 while(TRUE){
   # 화살 이미지 위치 (x, y)
   position = geometry_point(x, y)
-  
+  arrow_rotated = image_rotate(arrow_centered, angle) # 화살 회전
   # 이미지 합성: bg2(배경 + 과녁) + arrow(화살)
-  img = image_composite(bg2, arrow, offset=position)
+  img = image_composite(bg2, arrow_rotated, offset=position)
   
   print(img)
   
@@ -111,8 +112,12 @@ while(TRUE){
     break
   
   
-  if (x >= 230)
-    arrow = image_rotate(image_background(arrow, "none"), 3)
+  if (x >= 230) {
+    angle = 11
+    arrow_rotated = image_rotate(arrow_centered, angle) # 화살 회전
+  } else {
+    arrow_rotated = arrow_centered
+  }
   
   x = x + 20
   y = y - 18
