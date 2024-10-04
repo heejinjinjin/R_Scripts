@@ -107,15 +107,14 @@ while(TRUE){
   
   Sys.sleep(0.1)
   
-  # x축의 값이 400이 되면 반복문 빠져나간다.
-  if (x == 400)
+  if (x == 380)
     break
   
   
-  if (x >= 200)
-    arrow = image_rotate(image_background(arrow, "none"), 4)
+  if (x >= 230)
+    arrow = image_rotate(image_background(arrow, "none"), 3)
   
   x = x + 20
-  y = y - 20
+  y = y - 18
   
 }
